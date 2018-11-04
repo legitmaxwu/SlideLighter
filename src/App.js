@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import objectAssign from 'object-assign';
 import RegionSelect from 'react-region-select';
 import './App.css';
+import axios from 'axios';
+
+const serverURL = 'http://10.142.173.86:5000'
+
+const http = axios.create({
+  baseURL: serverURL,
+});
 
 class App extends Component {
   constructor (props) {
@@ -34,14 +41,25 @@ class App extends Component {
   uploadCoords = async () => {
     const {regions} = this.state;
     for (let i = 0; i < regions.length; i++) {
-      console.log(regions[i].x)
-      console.log(regions[i].y)
-      regions[i] = null
+      http.post('/savepoints', { // FIX DIS SHITE
+        x1: regions[i].x,
+        x2: regions[i].x + regions[i].width,
+        y1: 100 - regions[i].y,
+        y2: 100 - (regions[i].y + regions[i].height),
+        pageNum: this.state.slideNum + 1,
+        fileName: 'test_cal',
+      }) 
+      .then((result) => {
+        console.log(result.data)
+      }).catch(err=>console.log(err))
     }
+    this.setState(state => {
+      return {regions: []}
+    })
   }
   
   nextimg = async() => {
-
+    this.uploadCoords();
     this.setState(state => {
       if(state.slideNum < state.imgArray.length - 1){
         return {slideNum: (state.slideNum + 1), regions: []}
@@ -50,6 +68,7 @@ class App extends Component {
   }
 
   previmg = async() => {
+    this.uploadCoords();
     this.setState(state => {
       if (state.slideNum != 0) {
         return {slideNum: (state.slideNum - 1), regions: []}
@@ -57,22 +76,55 @@ class App extends Component {
     })
   }
 
+  getppt = async() => {
+    http.post('/requestslides', {
+      request: true
+    })
+    .then(response => {
+      console.log(response.data["jpeglinks"])
+      this.setState(state => {
+        return {imgArray: state.imgArray.concat(response.data["jpeglinks"])}
+      })
+    })
+    .catch(err=>console.log(err))
+  }
+
+/*
   importppt = async() => {
     this.setState(state => {
-      return {imgArray: state.imgArray.concat(['https://am23.akamaized.net/tms/cnt/uploads/2013/01/Donkey.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Donkey_1_arp_750px.jpg/330px-Donkey_1_arp_750px.jpg'])}
+      return {imgArray: state.imgArray.concat(['https://i.imgur.com/6aGu2lh.jpg',
+'https://i.imgur.com/hoHdERH.jpg',
+'https://i.imgur.com/8FdDSaS.jpg',
+'https://i.imgur.com/gay809F.jpg',
+'https://i.imgur.com/5AImPPV.jpg',
+'https://i.imgur.com/PnXmcr3.jpg',
+'https://i.imgur.com/SLAiXFX.jpg',
+'https://i.imgur.com/2YId7bv.jpg',
+'https://i.imgur.com/NdxKBB4.jpg',
+'https://i.imgur.com/jBhKEeH.jpg',
+'https://i.imgur.com/IlipFx3.jpg',
+'https://i.imgur.com/TUt8ibH.jpg',
+'https://i.imgur.com/7oX0Rwr.jpg',
+'https://i.imgur.com/bdRQp2c.jpg',
+'https://i.imgur.com/hm7ZUd8.jpg',
+'https://i.imgur.com/fa2jBkU.jpg',
+'https://i.imgur.com/BIm6oak.jpg',
+'https://i.imgur.com/mhWnMDs.jpg',
+'https://i.imgur.com/OheueRk.jpg'])}
     })
   }
+*/
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <div>
-            <button style = {{fontSize: "15px"}} id= 'importbutton' onClick={this.importppt}>IMPORT</button>
+            <button style = {{fontSize: "15px"}} id= 'importbutton' onClick={this.getppt}>IMPORT</button>
           </div>
           <div>
             <RegionSelect
-              maxRegions={1}
+              maxRegions={3}
               regions={this.state.regions}
               onChange={this.onChange}
               regionRenderer={this.regionRenderer}
@@ -90,8 +142,9 @@ class App extends Component {
           </div>
         </header>
         <div>
-          <button style = {{fontSize: "15px"}} height = "20px" width = "40px" onClick= {this.previmg}>PREV</button>
-          <button style = {{fontSize: "15px"}} height = "20px" width = "40px" onClick= {this.nextimg}>NEXT</button>
+          <button style = {{fontSize: "15px"}} onClick= {this.previmg}>PREV</button>
+          <button style = {{fontSize: "15px"}} onClick= {this.uploadCoords}>SUBMIT</button>
+          <button style = {{fontSize: "15px"}} onClick= {this.nextimg}>NEXT</button>
         </div>
       </div>
     );
