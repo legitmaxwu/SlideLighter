@@ -1,0 +1,25 @@
+LTTextBoxHorizontal
+(0.043462928474147, 0.8159226205539684, 0.5964629264201464, 0.9078041016941757)
+Op-Amps In Negative Feedback
+LTTextBoxHorizontal
+(0.0601377331744074, 0.7072689721140889, 0.9336629569605476, 0.7663356406708889)
+- In order to solve negative feedback problems, one should use KCL at every 
+LTTextBoxHorizontal
+(0.093462930074147, 0.6461578590474223, 0.45928794178054716, 0.7052245276042222)
+node, golden rules, and  I = V / R
+LTTextBoxHorizontal
+(0.0601377331744074, 0.5239356329140888, 0.8877129554901477, 0.6441134145375556)
+- This will simplify expressions and help solve for Vout, the output voltage
+- Some useful negative feedback op-amp configurations are
+LTTextBoxHorizontal: List - Element 1
+(0.110137732691074, 0.4612911864650222, 0.9377629570917474, 0.5218911884042222)
+Unity Gain Buffer - prevents loading, acts as a buffer
+LTTextBoxHorizontal: List - Element 2
+(0.110137732691074, 0.4006911845258222, 0.9377629570917474, 0.4612911864650222)
+Non-Inverting Amplifier - amplifies input values, also acts as buffer
+LTTextBoxHorizontal: List - Element 3
+(0.110137732691074, 0.3400911825866222, 0.9377629570917474, 0.4006911845258222)
+Inverting Amplifier - amplifies input values and flips sign; causes loading
+LTTextBoxHorizontal: List - Element 4
+(0.110137732691074, 0.2794911806474222, 0.9377629570917474, 0.3400911825866222)
+Transresistance Amplifier - converts current to voltage

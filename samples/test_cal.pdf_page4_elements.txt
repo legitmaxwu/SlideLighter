@@ -1,0 +1,19 @@
+LTTextBoxHorizontal
+(0.043462928474147, 0.8159226205539684, 0.7585129258182463, 0.9078041016941757)
+Calculating Thevenin / Norton Resistance
+LTTextBoxHorizontal
+(0.0601377331744074, 0.7072689721140889, 0.9544879576269477, 0.7663356406708889)
+- Find the equivalent resistance between terminal a and b, with all independent 
+LTTextBoxHorizontal
+(0.093462930074147, 0.6461578590474223, 0.272637935807747, 0.7052245276042222)
+sources nullified
+LTTextBoxHorizontal
+(0.0601377331744074, 0.5850467459807555, 0.5087629433637471, 0.6441134145375556)
+- When nullifying independent sources:
+LTTextBoxHorizontal
+(0.110137732691074, 0.4628245198474222, 0.5517879447405469, 0.5830023014708888)
+- Voltage sources become wires
+- Current sources become open wires 
+LTTextBoxHorizontal
+(0.0601377331744074, 0.4017134067807555, 0.5587879449645469, 0.46078007533755555)
+- Dependent sources should not be nullified

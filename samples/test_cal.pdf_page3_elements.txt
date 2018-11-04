@@ -1,0 +1,18 @@
+LTTextBoxHorizontal
+(0.043462928474147, 0.8159226205539684, 0.5446240377238022, 0.9078041016941757)
+Thevenin / Norton Equivalent
+LTTextBoxHorizontal
+(0.0601377331744074, 0.7220837874029779, 0.9545129576277477, 0.7811504559597777)
+- Equivalence simplifies a circuit into one independent source and one resistor, 
+LTTextBoxHorizontal
+(0.093462930074147, 0.6609726743363112, 0.9350129570037476, 0.7200393428931111)
+while still having the same output voltage and current at two specified nodes
+LTTextBoxHorizontal
+(0.110137732691074, 0.5387504482029778, 0.8268129535413473, 0.6589282298264445)
+- Thevenin Equivalent - independent source is a voltage source
+- Norton Equivalent - independent source is a current source
+LTTextBoxHorizontal
+(0.0601377331744074, 0.4776393351363111, 0.8197379533149476, 0.5367060036931112)
+- Preserves all behavior of the circuit outside at the specified nodes
+LTFigure
+(0.2408792181193333, 0.05242443745244454, 0.7591206498386667, 0.4489490442891852)
