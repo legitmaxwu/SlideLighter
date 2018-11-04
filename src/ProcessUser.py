@@ -18,8 +18,11 @@ def FindSelectedElements(clickpoints,page,filename):
     fLines = elementFile.readlines()
     coordLine,getText = False,False
     elementText = ""
+
     for line in fLines:
+        print ("line", line)
         if getText:
+            print('xd')
             if (line[:2] != "LT" and (line[:1] != "(" and not line[1:4].isdigit())):
                 elementText += line
                 continue
@@ -33,6 +36,8 @@ def FindSelectedElements(clickpoints,page,filename):
             if (calculateCoverPer(clickpoints,make_tuple(line)) > 0.5):
                 getText = not getText
             coordLine = not coordLine
+    if len(elementText) > 0:
+        dic[elementText.rstrip()] = dic.get(elementText.rstrip(),0) + 1
 
 def GetDict():
     return dic
