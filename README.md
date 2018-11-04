@@ -2,29 +2,26 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install Guide
 
-Backend:
 ```sh
  pip install pdfminer.six
- pip install a lot of other stuff
- who needs good documentation
- ```
-Frontend:
-```sh
- yarn install
+ pip install flask
+ pip install flask_restful
+ pip install eventlet
+ pip install bcrypt
+ pip install six
  ```
 
  ## Usage
 
-Backend:
 ```sh
-  python ProcessPDF.py
-  python ProcessUser.py
-  python network.py #starts server
+  python test.py
   ```
-Frontend:
-```sh
-  yarn start
-  ```
+Generate JPEGs from PDF with name  
+Upload to Imgur and store image URLs  
+Parse PDF with pdfminer  
+Start server
+
+
 
 ## Learn More
 
