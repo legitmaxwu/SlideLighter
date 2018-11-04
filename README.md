@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ```sh
  pip install pdfminer.six
+ pip install a lot of other stuff
+ who needs good documentation
  ```
 
  ## Usage
