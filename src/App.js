@@ -51,7 +51,7 @@ class App extends Component {
         y1: 100 - regions[i].y,
         y2: 100 - (regions[i].y + regions[i].height),
         pageNum: this.state.slideNum + 1,
-        fileName: 'test',
+        fileName: 'test_cal',
       }) 
       .then((result) => {
         console.log(result)
