@@ -13,6 +13,7 @@ from pymongo import MongoClient
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user
 import bcrypt
 import requests
+import base64
 from flask_cors import CORS
 from bson.objectid import ObjectId
 
@@ -40,6 +41,19 @@ def detectPattern():
             "status": 'OK',
             "message": 'Compared!',
         })
+
+@app.route('/requestslides', methods=['POST'])
+def detectrequest():
+    if request.method == 'POST':
+        if request.json.get('request') == True:
+            images = []
+            for filename in os.listdir("./ImageTest"):
+                with open("./ImageTest/" + filename, "rb") as image_file:
+                images.append(base64.b64encode(image_file.read()))
+            return jsonify({
+                "jpgs": images
+            })
+        
 
 if __name__ == '__main__':
     app.run(debug='True', host='0.0.0.0', threaded=True)
