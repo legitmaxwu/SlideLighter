@@ -87,7 +87,7 @@ class App extends Component {
     .then(response => {
       console.log(response.data["jpeglinks"])
       this.setState(state => {
-        return {imgArray: response.data["jpeglinks"], slideNum: 0}
+        return {imgArray: state.imgArray.concat(response.data["jpeglinks"])}
       })
     })
     .catch(err=>console.log(err))
@@ -161,6 +161,23 @@ class App extends Component {
                   ]}
                   defaultPageSize={8}
                 />
+              </div>
+            </div>
+
+            <div label="Instructions">
+              <div style={{width: '60%', margin: 'auto'}}>
+                <h4>
+                  To highlight slides:
+                </h4>
+                <p>
+                  Go to <b>Slides</b>. Press <b>IMPORT</b>, enable running unsafe scripts in your URL bar if needed (we promise that our program is non-malicious), and click/drag to draw highlight boxes on the slides. Make sure to click <b>SUBMIT</b> so the program can track your highlights! Use <b>PREV</b> and <b>NEXT</b> to navigate the slides.
+                </p>
+                <h4>
+                  To generate a concept map:
+                </h4>
+                <p>
+                  Go to <b>Concepts</b>. Press <b>GENERATE CONCEPTS</b> to generate a table of important key terms based on what you're "confused" about (what you highlighted!). Note that the table will be empty unless you've submitted a few highlights.
+                </p>
               </div>
             </div>
           </Tabs>
