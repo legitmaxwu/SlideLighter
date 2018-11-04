@@ -38,7 +38,7 @@ class App extends Component {
     );
   }
 
-   uploadCoords = async () => {
+  uploadCoords = async () => {
     const {regions} = this.state;
     for (let i = 0; i < regions.length; i++) {
       http.post('/savepoints', { // FIX DIS SHITE
@@ -46,7 +46,7 @@ class App extends Component {
         x2: regions[i].x + regions[i].width,
         y1: 100 - regions[i].y,
         y2: 100 - (regions[i].y + regions[i].height),
-        pageNum: 1,
+        pageNum: this.state.slideNum + 1,
         fileName: 'test',
       }) 
       .then((result) => {
@@ -78,7 +78,7 @@ class App extends Component {
 
   importppt = async() => {
     this.setState(state => {
-      return {imgArray: state.imgArray.concat(['https://am23.akamaized.net/tms/cnt/uploads/2013/01/Donkey.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Donkey_1_arp_750px.jpg/330px-Donkey_1_arp_750px.jpg'])}
+      return {imgArray: state.imgArray.concat(['https://i.imgur.com/cZZszWQ.jpg', 'https://i.imgur.com/pBOLLXs.jpg'])}
     })
   }
 
