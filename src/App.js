@@ -38,7 +38,7 @@ class App extends Component {
     );
   }
 
-   uploadCoords = async () => {
+  uploadCoords = async () => {
     const {regions} = this.state;
     for (let i = 0; i < regions.length; i++) {
       http.post('/savepoints', { // FIX DIS SHITE
@@ -46,7 +46,7 @@ class App extends Component {
         x2: regions[i].x + regions[i].width,
         y1: 100 - regions[i].y,
         y2: 100 - (regions[i].y + regions[i].height),
-        pageNum: 1,
+        pageNum: this.state.slideNum + 1,
         fileName: 'test',
       }) 
       .then((result) => {
