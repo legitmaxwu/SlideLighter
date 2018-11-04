@@ -2,21 +2,29 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install Guide
 
+Backend:
 ```sh
  pip install pdfminer.six
  pip install a lot of other stuff
  who needs good documentation
  ```
+Frontend:
+```sh
+ yarn install
+ ```
 
  ## Usage
 
+Backend:
 ```sh
   python ProcessPDF.py
   python ProcessUser.py
   python network.py #starts server
   ```
-
-
+Frontend:
+```sh
+  yarn start
+  ```
 
 ## Learn More
 
