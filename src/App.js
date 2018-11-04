@@ -87,7 +87,7 @@ class App extends Component {
     .then(response => {
       console.log(response.data["jpeglinks"])
       this.setState(state => {
-        return {imgArray: state.imgArray.concat(response.data["jpeglinks"])}
+        return {imgArray: response.data["jpeglinks"], slideNum: 0}
       })
     })
     .catch(err=>console.log(err))
