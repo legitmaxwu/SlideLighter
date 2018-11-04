@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import objectAssign from 'object-assign';
 import RegionSelect from 'react-region-select';
 import './App.css';
+import axios from 'axios';
+
+const serverURL = 'http://10.142.173.86:5000'
+
+const http = axios.create({
+  baseURL: serverURL,
+});
 
 class App extends Component {
   constructor (props) {
@@ -31,17 +38,28 @@ class App extends Component {
     );
   }
 
-  uploadCoords = async () => {
+   uploadCoords = async () => {
     const {regions} = this.state;
     for (let i = 0; i < regions.length; i++) {
-      console.log(regions[i].x)
-      console.log(regions[i].y)
-      regions[i] = null
+      http.post('/savepoints', { // FIX DIS SHITE
+        x1: regions[i].x,
+        x2: regions[i].x + regions[i].width,
+        y1: 100 - regions[i].y,
+        y2: 100 - (regions[i].y + regions[i].height),
+        pageNum: 1,
+        fileName: 'test',
+      }) 
+      .then((result) => {
+        console.log(result)
+      }).catch(err=>console.log(err))
     }
+    this.setState(state => {
+      return {regions: []}
+    })
   }
   
   nextimg = async() => {
-
+    this.uploadCoords();
     this.setState(state => {
       if(state.slideNum < state.imgArray.length - 1){
         return {slideNum: (state.slideNum + 1), regions: []}
@@ -50,6 +68,7 @@ class App extends Component {
   }
 
   previmg = async() => {
+    this.uploadCoords();
     this.setState(state => {
       if (state.slideNum != 0) {
         return {slideNum: (state.slideNum - 1), regions: []}
@@ -91,6 +110,7 @@ class App extends Component {
         </header>
         <div>
           <button style = {{fontSize: "15px"}} onClick= {this.previmg}>PREV</button>
+          <button style = {{fontSize: "15px"}} onClick= {this.uploadCoords}>SUBMIT</button>
           <button style = {{fontSize: "15px"}} onClick= {this.nextimg}>NEXT</button>
         </div>
       </div>
