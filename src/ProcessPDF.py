@@ -18,15 +18,38 @@ from pdfminer.layout import LAParams, LTTextBox, LTTextLine, LTFigure
 ofile = None
 pdfsize = 0
 
+
 def parse_layout(layout):
     """Function to recursively parse the layout tree."""
+
     for lt_obj in layout:
-        ofile.write(str(lt_obj.__class__.__name__) + "\n")
-        adjusted_coords = (lt_obj.bbox[0]/pdfsize[2],lt_obj.bbox[1]/pdfsize[3],lt_obj.bbox[2]/pdfsize[2],lt_obj.bbox[3]/pdfsize[3])
-        ofile.write(str(adjusted_coords) + "\n")
         if isinstance(lt_obj, LTTextBox) or isinstance(lt_obj, LTTextLine):
-            ofile.write(str(lt_obj.get_text()))
+            parsed = str(lt_obj.get_text())
+            if parsed.count('\n-') > 1 or parsed.count('\n2'):
+                splits = parsed.split('\n')
+                splits.pop()
+                length = len(splits)
+                for i in range(length):
+                    while (not splits[i][0].isalpha()):
+                        splits[i] = splits[i][1:]
+                x_coord_1, x_coord_2 = lt_obj.bbox[0]/pdfsize[2], lt_obj.bbox[2]/pdfsize[2]
+                y_coord_1, y_coord_2 = lt_obj.bbox[1]/pdfsize[3], lt_obj.bbox[3]/pdfsize[3]
+                y_coord_sectioned = (y_coord_2 - y_coord_1) / length
+                for index in range(length):
+                    ofile.write(str(lt_obj.__class__.__name__) + ": List - Element " + str(index + 1) + "\n")
+                    adjusted_coords = (x_coord_1, y_coord_2 - (index + 1) * y_coord_sectioned, x_coord_2, y_coord_2 - index * y_coord_sectioned)
+                    ofile.write(str(adjusted_coords) + "\n")
+                    ofile.write(splits[index] + "\n")
+            else:
+                ofile.write(str(lt_obj.__class__.__name__) + "\n")
+                adjusted_coords = (lt_obj.bbox[0]/pdfsize[2],lt_obj.bbox[1]/pdfsize[3],lt_obj.bbox[2]/pdfsize[2],lt_obj.bbox[3]/pdfsize[3])
+                ofile.write(str(adjusted_coords) + "\n")
+                ofile.write(parsed)
+                
         elif isinstance(lt_obj, LTFigure):
+            ofile.write(str(lt_obj.__class__.__name__) + "\n")
+            adjusted_coords = (lt_obj.bbox[0]/pdfsize[2],lt_obj.bbox[1]/pdfsize[3],lt_obj.bbox[2]/pdfsize[2],lt_obj.bbox[3]/pdfsize[3])
+            ofile.write(str(adjusted_coords) + "\n")
             parse_layout(lt_obj)  # Recursive
 
 def parse_pdf(pdfFilePath):
@@ -37,7 +60,7 @@ def parse_pdf(pdfFilePath):
     doc = PDFDocument(parser)
     pdfsize = PDFPage.create_pages(doc).__next__().mediabox
     rsrcmgr = PDFResourceManager()
-    laparams = LAParams(line_margin=0.2)
+    laparams = LAParams(line_margin=0.2,char_margin = 5)
     device = PDFPageAggregator(rsrcmgr, laparams=laparams)
     interpreter = PDFPageInterpreter(rsrcmgr, device)
 
