@@ -80,10 +80,17 @@ class App extends Component {
     })
   }
 
-  importppt = async() => {
-    this.setState(state => {
-      return {imgArray: state.imgArray.concat(['https://i.imgur.com/cZZszWQ.jpg', 'https://i.imgur.com/pBOLLXs.jpg'])}
+ getppt = async() => {
+    http.post('/requestslides', {
+      request: true
     })
+    .then(response => {
+      console.log(response.data["jpeglinks"])
+      this.setState(state => {
+        return {imgArray: state.imgArray.concat(response.data["jpeglinks"])}
+      })
+    })
+    .catch(err=>console.log(err))
   }
 
   generate = async() => {
@@ -119,7 +126,7 @@ class App extends Component {
             <div label="Slides">
               <div>
                 <div>
-                  <button style = {{fontSize: "25px", margin: "5px"}} id= 'importbutton' onClick={this.importppt}>IMPORT</button>
+                  <button style = {{fontSize: "25px", margin: "5px"}} id= 'importbutton' onClick={this.getppt}>IMPORT</button>
                 </div>
                 <div>
                   <RegionSelect
