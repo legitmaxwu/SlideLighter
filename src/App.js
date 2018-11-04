@@ -78,7 +78,7 @@ class App extends Component {
 
   importppt = async() => {
     this.setState(state => {
-      return {imgArray: state.imgArray.concat(['https://am23.akamaized.net/tms/cnt/uploads/2013/01/Donkey.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Donkey_1_arp_750px.jpg/330px-Donkey_1_arp_750px.jpg'])}
+      return {imgArray: state.imgArray.concat(['https://i.imgur.com/cZZszWQ.jpg', 'https://i.imgur.com/pBOLLXs.jpg'])}
     })
   }
 
