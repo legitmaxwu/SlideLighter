@@ -142,7 +142,7 @@ class App extends Component {
 
             <div label="Concepts">
               <button style = {{fontSize: "25px", margin: "5px"}} onClick= {this.generate}>GENERATE CONCEPTS</button>
-              <div>
+              <div style={{backgroundColor:"#565b63"}}>
                 <ReactTable
                   data={this.state.data}
                   columns={columns}

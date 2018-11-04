@@ -29,12 +29,12 @@ class Tab extends Component {
     }
 
     return (
-      <p style={{margin: "0px"}}
+      <button style={{margin: "0px"}}
         className={className}
         onClick={onClick}
       >
         {label}
-      </p>
+      </button>
     );
   }
 }
