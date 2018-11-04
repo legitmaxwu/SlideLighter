@@ -1,5 +1,6 @@
 import argparse
 import logging
+import unicodedata
 import six
 import sys
 sys.path.insert(0,"/Users/adam/anaconda3/lib/python3.6/site-packages/pdfminer.six-20170720-py3.6.egg")
