@@ -7,7 +7,7 @@ import axios from 'axios';
 import Tabs from './tabs';
 import { strict } from 'assert';
 
-const serverURL = 'http://10.142.174.141:5000'
+const serverURL = 'http://172.19.213.113:5000'
 
 const http = axios.create({
   baseURL: serverURL,
