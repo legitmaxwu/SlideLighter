@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Project Description
 
 We all understand the struggle of asking questions in a college lecture. In a class of hundreds of students, the last thing you want to do is draw attention to yourself and take up time by asking something mediocre.
@@ -8,9 +6,13 @@ What if you could address your misconceptions in a subtler manner? SlideLighter 
 
 The aim of SlideLighter is to increase lecture interactivity by making it easier for students to give input. Our longstanding goal would be to spread the app as much as possible, trying to introduce it to as many teachers and professors as possible.
 
+Initial interface:
 ![alt text](https://he-s3.s3.amazonaws.com/media/sprint/cal-hacks-50/team/477263/263ff5ehomepage.PNG)
+Highlight confusing parts of slides:
 ![alt text](https://he-s3.s3.amazonaws.com/media/sprint/cal-hacks-50/team/477263/2ab5727highlighting.png)
+Concept generator interface:
 ![alt text](https://he-s3.s3.amazonaws.com/media/sprint/cal-hacks-50/team/477263/3041797table.png)
+Generated concepts based on highlighted text:
 ![alt text](https://he-s3.s3.amazonaws.com/media/sprint/cal-hacks-50/team/477263/338c002importance.png)
 
 ## Install Guide
